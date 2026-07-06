@@ -1,4 +1,13 @@
-import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
+} from 'typeorm';
+import Company from '@modules/companies/typeorm/entities/Company';
 
 @Entity('buses')
 export default class Bus {
@@ -25,7 +34,14 @@ export default class Bus {
 
     @Column()
     last_maintenance_date: Date;
-    
+
+    @Column({ type: 'uuid', nullable: true })
+    company_id: string;
+
+    @ManyToOne(() => Company, company => company.buses)
+    @JoinColumn({ name: 'company_id' })
+    company: Company;
+
     @CreateDateColumn()
     created_at: Date;
 

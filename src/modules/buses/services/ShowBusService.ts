@@ -3,7 +3,7 @@ import { AppDataSource } from "@shared/typeorm/data-source";
 import Bus from "../typeorm/entities/Bus";
 
 interface IRequest {
-  id: string;
+    id: string;
 }
 
 export default class ShowBusService {

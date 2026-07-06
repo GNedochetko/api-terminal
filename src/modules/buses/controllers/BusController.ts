@@ -34,7 +34,7 @@ export default class BusController {
 
     public async create(request: Request, response: Response, next: NextFunction): Promise<Response | void> {
         try {
-            const { plate, model, brand, year, passenger_capacity, current_mileage, last_maintenance_date } = request.body;
+            const { plate, model, brand, year, passenger_capacity, current_mileage, last_maintenance_date, company_id } = request.body;
 
             const createBusService = new CreateBusService();
 
@@ -45,7 +45,8 @@ export default class BusController {
                 year,
                 passenger_capacity,
                 current_mileage,
-                last_maintenance_date
+                last_maintenance_date,
+                company_id
             });
 
             return response.status(201).json(bus);
@@ -57,7 +58,7 @@ export default class BusController {
     public async update(request: Request, response: Response, next: NextFunction): Promise<Response | void> {
         try {
             const id = request.params.id as string;
-            const { plate, model, brand, year, passenger_capacity, current_mileage, last_maintenance_date } = request.body;
+            const { plate, model, brand, year, passenger_capacity, current_mileage, last_maintenance_date, company_id } = request.body;
 
             const updateBusService = new UpdateBusService();
 
@@ -69,7 +70,8 @@ export default class BusController {
                 year,
                 passenger_capacity,
                 current_mileage,
-                last_maintenance_date
+                last_maintenance_date,
+                company_id
             });
 
             return response.status(200).json(bus);
